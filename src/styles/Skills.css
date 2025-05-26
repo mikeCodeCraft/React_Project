@@ -1,0 +1,6 @@
+/* src/styles/Skills.css */
+.skill-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
