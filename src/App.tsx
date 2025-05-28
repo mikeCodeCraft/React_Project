@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import UpdateProfile from './components/UpdateProfile';
+
 import ProtectedRoute from './components/ProtectedRoute';
 import './styles/index.css';
 
@@ -28,6 +30,8 @@ const App = () => {
             </>
           }
         />
+        <Route path="/profile/update" element={<UpdateProfile />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/profile"

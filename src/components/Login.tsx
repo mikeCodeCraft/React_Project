@@ -17,7 +17,7 @@ const Login = () => {
 
     try {
       // Try /auth/verify/login/ first
-      const response = await api.post('/auth/verify/login/', {
+      const response = await api.post('/auth/token/', {
         username,
         password,
       });
