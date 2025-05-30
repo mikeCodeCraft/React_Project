@@ -27,10 +27,11 @@ const App = () => {
               <Hero />
               <About />
               <Skills />
-              <Projects />
+              <Projects preview={true}/>
             </>
           }
         />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/profile/update" element={<UpdateProfile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Projects/:id" element={<ProjectDetail />} />

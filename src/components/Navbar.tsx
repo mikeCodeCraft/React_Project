@@ -1,17 +1,22 @@
 // src/components/Navbar.jsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ThemeContext } from '../context/ThemeContext';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
   const isAuthenticated = !!localStorage.getItem('access_token');
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   const handleLogout = async () => {
@@ -27,7 +32,59 @@ const Navbar = () => {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      navigate('/login');
+    }
+  };
+
+  // Close menu on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMobileMenuOpen) {
+        closeMobileMenu();
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobileMenuOpen]);
+
+  // Close menu on outside click/touch
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (
+        isMobileMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(e.target)
+      ) {
+        closeMobileMenu();
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Smooth scrolling for anchor links
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    closeMobileMenu();
+    if (window.location.pathname !== '/') {
+      navigate(`/#${targetId}`);
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -40,27 +97,45 @@ const Navbar = () => {
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <Link to="/" className="nav-link px-3 py-2 text-sm font-medium">Home</Link>
-              <Link to="/about" className="nav-link px-3 py-2 text-sm font-medium">About</Link>
-              <Link to="/skills" className="nav-link px-3 py-2 text-sm font-medium">Skills</Link>
-              <Link to="/projects" className="nav-link px-3 py-2 text-sm font-medium">Projects</Link>
+              <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                Home
+              </a>
+              <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                About
+              </a>
+              <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                Skills
+              </a>
+              <Link to="/projects" className="nav-link px-3 py-2 text-sm font-medium text-indigo-600">
+                Projects
+              </Link>
               {isAuthenticated ? (
                 <>
-                  <Link to="/profile" className="nav-link px-3 py-2 text-sm font-medium">Profile</Link>
+                  <Link to="/profile" className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                    Profile
+                  </Link>
                   <button onClick={handleLogout} className="nav-link px-3 py-2 text-sm font-medium text-red-600">
                     Logout
                   </button>
                 </>
               ) : (
                 <>
-                  <Link to="/login" className="nav-link px-3 py-2 text-sm font-medium">Login</Link>
-                  <Link to="/register" className="nav-link px-3 py-2 text-sm font-medium">Register</Link>
+                  <Link to="/login" className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                    Login
+                  </Link>
+                  <Link to="/register" className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                    Register
+                  </Link>
                 </>
               )}
             </div>
           </div>
           <div className="md:hidden">
-            <button onClick={toggleMobileMenu} className="mobile-menu-button p-2 rounded-md text-gray-700 hover:text-indigo-500 focus:outline-none">
+            <button
+              ref={buttonRef}
+              onClick={toggleMobileMenu}
+              className="mobile-menu-button p-2 rounded-md text-gray-700 hover:text-indigo-500 focus:outline-none"
+            >
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -68,23 +143,58 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white shadow-lg fixed top-16 left-0 w-full z-50`}>
+      <div
+        ref={menuRef}
+        className={`mobile-menu ${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white shadow-lg fixed top-16 left-0 w-full z-50`}
+      >
         <div className="px-4 pt-4 pb-2 space-y-2">
-          <Link to="/" className="block nav-link px-3 py-2 text-sm font-medium">Home</Link>
-          <Link to="/about" className="block nav-link px-3 py-2 text-sm font-medium">About</Link>
-          <Link to="/skills" className="block nav-link px-3 py-2 text-sm font-medium">Skills</Link>
-          <Link to="/projects" className="block nav-link px-3 py-2 text-sm font-medium text-indigo-600">Projects</Link>
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, 'home')}
+            className="block nav-link px-3 py-2 text-sm font-medium text-gray-700"
+          >
+            Home
+          </a>
+          <a
+            href="#about"
+            onClick={(e) => handleNavClick(e, 'about')}
+            className="block nav-link px-3 py-2 text-sm font-medium text-gray-700"
+          >
+            About
+          </a>
+          <a
+            href="#skills"
+            onClick={(e) => handleNavClick(e, 'skills')}
+            className="block nav-link px-3 py-2 text-sm font-medium text-gray-700"
+          >
+            Skills
+          </a>
+          <Link to="/projects" onClick={closeMobileMenu} className="block nav-link px-3 py-2 text-sm font-medium text-indigo-600">
+            Projects
+          </Link>
           {isAuthenticated ? (
             <>
-              <Link to="/profile" className="block nav-link px-3 py-2 text-sm font-medium">Profile</Link>
-              <button onClick={handleLogout} className="block nav-link px-3 py-2 text-sm font-medium text-red-600">
+              <Link to="/profile" onClick={closeMobileMenu} className="block nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                Profile
+              </Link>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  closeMobileMenu();
+                }}
+                className="block nav-link px-3 py-2 text-sm font-medium text-red-600"
+              >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="block nav-link px-3 py-2 text-sm font-medium">Login</Link>
-              <Link to="/register" className="block nav-link px-3 py-2 text-sm font-medium">Register</Link>
+              <Link to="/login" onClick={closeMobileMenu} className="block nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                Login
+              </Link>
+              <Link to="/register" onClick={closeMobileMenu} className="block nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                Register
+              </Link>
             </>
           )}
         </div>
