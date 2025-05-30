@@ -91,11 +91,11 @@ const Projects = ({ preview = false }) => {
           </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+          {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="project-card bg-white rounded-xl overflow-hidden shadow-lg card-hover transition duration-500 animate-fadeIn"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="project-card bg-white rounded-xl overflow-hidden shadow-lg card-hover transition duration-500"
+              data-category={project.categories.join(',')}
             >
               <div className="h-48 overflow-hidden">
                 <img src={project.image} alt={project.title} className="w-full h-full object-cover" />

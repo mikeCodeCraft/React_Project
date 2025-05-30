@@ -1,14 +1,14 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen ] = useState(true);
   const isAuthenticated = !!localStorage.getItem('access_token');
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
+  const menuRef = useRef();
+  const buttonRef = useRef();
   const navigate = useNavigate();
 
   const toggleMobileMenu = () => {

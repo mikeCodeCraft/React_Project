@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// src/hooks/useCurrentUser.jsx
+import { useState, useEffect } from 'react';
 import api from '../api/api';
 
 const useCurrentUser = () => {
@@ -9,7 +10,7 @@ const useCurrentUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await api.get('/accounts/me/'); 
+        const response = await api.get('/auth/user/');
         setUser(response.data);
       } catch (err) {
         setError('Failed to load user');
@@ -17,7 +18,6 @@ const useCurrentUser = () => {
         setLoading(false);
       }
     };
-
     fetchUser();
   }, []);
 

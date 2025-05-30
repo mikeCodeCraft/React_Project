@@ -1,3 +1,4 @@
+// src/components/Register.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
@@ -15,20 +16,20 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
-      const response = await api.post('/accounts/users/', formData);
+      await api.post('/accounts/users/', formData);
       alert('Registration successful!');
       navigate('/login');
-    } catch (err: any) {
+    } catch (err) {
       console.error('Registration error:', err.response);
       setError(
         err.response?.data?.info ||
@@ -56,7 +57,7 @@ const Register = () => {
                 type={field === 'password' ? 'password' : 'text'}
                 id={field}
                 name={field}
-                value={(formData as any)[field]}
+                value={formData[field]}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                 required

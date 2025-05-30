@@ -1,4 +1,4 @@
-// src/components/UpdateProfile.tsx
+// src/components/UpdateProfile.jsx
 import React, { useState, useEffect } from 'react';
 import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
@@ -10,10 +10,10 @@ const UpdateProfile = () => {
     last_name: '',
     password: '',
     old_password: '',
-    image: null as File | null,
+    image: null,
   });
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
@@ -38,18 +38,18 @@ const UpdateProfile = () => {
       });
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e) => {
     const file = e.target.files?.[0] || null;
     setUserData({ ...userData, image: file });
 
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     } else {
@@ -57,7 +57,7 @@ const UpdateProfile = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
@@ -83,7 +83,7 @@ const UpdateProfile = () => {
 
       setSuccess('Profile updated successfully!');
       setUserData(prev => ({ ...prev, password: '', old_password: '' }));
-    } catch (err: any) {
+    } catch (err) {
       setError(err.response?.data?.info || 'Update failed');
     }
   };
