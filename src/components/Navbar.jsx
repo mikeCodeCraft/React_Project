@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import '../styles/Navbar.css';
