@@ -21,11 +21,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await api.post('/auth/revoke-token/', {
-        token: localStorage.getItem('access_token'),
-        client_id: 'M4KPVSbc7K6DH2Kl7V29Y2heIF0tzZuGutGq0kML',
-        client_secret: 'zzBIxrpxVVAD7cfpO3x2XAyGeFi9tUJaqgMPd5wEnOXIwX50FsVdIJDAeRfjcXfn23NATEkoBxOYyzpZouLzOeTMonxm7r570TtABVcRf0I0rnXqHVwceGwW6gA3gUVA',
-      });
+      await api.post('/auth/revoke-token/', { token, client_id, client_secret });
     } catch (err) {
       console.error('Logout error:', err);
     } finally {

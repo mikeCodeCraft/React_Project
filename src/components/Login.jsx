@@ -16,49 +16,27 @@ const Login = () => {
     setError('');
 
     try {
-      // Try /auth/verify/login/ first
-      const response = await api.post('/auth/token/', {
-        username,
-        password,
+      const params = new URLSearchParams();
+      params.append('grant_type', 'password');
+      params.append('username', username);
+      params.append('password', password);
+      params.append('client_id', import.meta.env.VITE_CLIENT_ID || 'M4KPVSbc7K6DH2Kl7V29Y2heIF0tzZuGutGq0kML');
+      params.append('client_secret', import.meta.env.VITE_CLIENT_SECRET || 'zzBIxrpxVVAD7cfpO3x2XAyGeFi9tUJaqgMPd5wEnOXIwX50FsVdIJDAeRfjcXfn23NATEkoBxOYyzpZouLzOeTMonxm7r570TtABVcRf0I0rnXqHVwceGwW6gA3gUVA');
+
+      const response = await api.post('/auth/token/', params, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       });
 
-      if (response.data.access_token) {
-        localStorage.setItem('access_token', response.data.access_token);
-        localStorage.setItem('refresh_token', response.data.refresh_token || '');
-        localStorage.setItem('user', JSON.stringify({ username }));
-        alert('Login successful!');
-        navigate('/');
-        return;
-      }
-
-      throw new Error('No token received');
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('refresh_token', response.data.refresh_token || '');
+      localStorage.setItem('user', JSON.stringify({ username }));
+      alert('Login successful!');
+      navigate('/');
     } catch (err) {
-      console.error('Login error (verify endpoint):', err?.response?.data || err.message);
-
-      // Fallback to token endpoint using x-www-form-urlencoded
-      try {
-        const params = new URLSearchParams();
-        params.append('grant_type', 'password');
-        params.append('username', username);
-        params.append('password', password);
-        params.append('client_id', 'M4KPVSbc7K6DH2Kl7V29Y2heIF0tzZuGutGq0kML');
-        params.append('client_secret', 'zzBIxrpxVVAD7cfpO3x2XAyGeFi9tUJaqgMPd5wEnOXIwX50FsVdIJDAeRfjcXfn23NATEkoBxOYyzpZouLzOeTMonxm7r570TtABVcRf0I0rnXqHVwceGwW6gA3gUVA');
-
-        const tokenResponse = await api.post('/auth/token/', params, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        });
-
-        localStorage.setItem('access_token', tokenResponse.data.access_token);
-        localStorage.setItem('refresh_token', tokenResponse.data.refresh_token || '');
-        localStorage.setItem('user', JSON.stringify({ username }));
-        alert('Login successful!');
-        navigate('/');
-      } catch (tokenErr) {
-        console.error('Token endpoint error:', tokenErr?.response?.data || tokenErr.message);
-        setError(tokenErr.response?.data?.error_description || 'Login failed. Please try again.');
-      }
+      console.error('Login error:', err?.response?.data || err.message);
+      setError(err.response?.data?.error_description || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
