@@ -63,6 +63,72 @@ python file_organizer.py`,
     "Installers": [".exe", ".msi", ".dmg", ".deb"],
 }`,
       },
+
+      {
+        title: 'File Organization Function',
+        code: `def organize_files():
+    path = folder_path.get()
+    if not path:
+        messagebox.showwarning("No Folder", "Please select a folder first.")
+        return
+
+    moved_files = {}  # Track moved files for undo functionality
+
+    try:
+        for filename in os.listdir(path):
+            file_path = os.path.join(path, filename)
+            
+            if os.path.isfile(file_path):
+                file_ext = os.path.splitext(filename)[1].lower()
+                moved = False
+                
+                # Check each category for matching extension
+                for category, extensions in FILE_CATEGORIES.items():
+                    if file_ext in extensions:
+                        new_path = move_file_to_category(file_path, path, category)
+                        moved_files[new_path] = file_path  # log: new → old
+                        moved = True
+                        break
+                
+                # If no category matched, move to "Others"
+                if not moved:
+                    new_path = move_file_to_category(file_path, path, "Others")
+                    moved_files[new_path] = file_path
+
+        # Save undo log
+        with open("organizer_log.json", "w") as f:
+            json.dump(moved_files, f)
+
+        messagebox.showinfo("Success", "Files have been organized!")
+        list_files(path)  # Refresh file list
+    except Exception as e:
+        messagebox.showerror("Error", f"Failed to organize files:\n{e}")
+}`,
+      }, 
+      {
+        title: 'Undo Functionality',
+        code: `def undo_organize():
+    if not os.path.exists("organizer_log.json"):
+        messagebox.showinfo("Nothing to Undo", "No organization log found.")
+        return
+
+    try:
+        with open("organizer_log.json", "r") as f:
+            moved_files = json.load(f)
+
+        # Move files back to their original locations
+        for new_path, original_path in moved_files.items():
+            if os.path.exists(new_path):
+                shutil.move(new_path, original_path)
+
+        # Remove the log file after undo
+        os.remove("organizer_log.json")
+        
+        messagebox.showinfo("Undo Complete", "Files moved back successfully.")
+        list_files(folder_path.get())  # Refresh file list
+    except Exception as e:
+        messagebox.showerror("Error", f"Undo failed:\n{e}")`,
+      },
       // Add other code snippets
     ],
     challenges: [
