@@ -1,4 +1,4 @@
-// src/components/ProjectDetail.jsx
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../styles/ProjectDetail.css';
