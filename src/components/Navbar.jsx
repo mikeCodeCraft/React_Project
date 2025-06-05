@@ -5,7 +5,7 @@ import api from '../api/api';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen ] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false);
   const isAuthenticated = !!localStorage.getItem('access_token');
   const menuRef = useRef();
   const buttonRef = useRef();

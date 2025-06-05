@@ -10,7 +10,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
-
+import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import './styles/index.css';
 import ProjectDetail from './components/ProjectDetail';
@@ -36,6 +36,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/Projects/:id" element={<ProjectDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
         <Route
           path="/profile"
           element={
