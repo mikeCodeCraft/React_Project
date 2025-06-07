@@ -74,6 +74,9 @@ const currencyConverter = {
     runCommands: `# Clone the repository
 git clone https://github.com/mikeCodeCraft/Python_Mini_Projects.git
 
+# Navigate to the project directory
+cd Python_Mini_Projects
+
 # Install dependencies
 pip install requests
 pip install tkinter
