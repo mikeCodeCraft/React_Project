@@ -34,6 +34,8 @@ const fileOrganizer =   {
       runCommands: `# Clone the repository
 git clone hhttps://github.com/mikeCodeCraft/File-Arranger.git
 
+cd File-Arranger
+
 # Run the application
 python file_organizer.py`,
       usage: [
