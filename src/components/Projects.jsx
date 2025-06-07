@@ -2,39 +2,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Projects.css';
+import projects1 from './projects/projectbreif'; 
+
 
 export const projects = [
-  {
-    id: 'typing-game',
-    title: 'Typing Game',
-    image: '/keyboard.jpg',
-    description: 'A desktop application that tests and improves your typing speed with programming terminology',
-    tags: ['Python', 'Tkinter'],
-    type: 'Python Project',
-    codeLink: 'https://github.com/mikeCodeCraft/Python_Mini_Projects/blob/main/typingGame.py',
-    categories: ['game', 'python'],
-  },
-  {
-    id: 'weather-checker',
-    title: 'Weather Checker App',
-    image: '/weather.jpg',
-    description: 'A Python application that fetches and displays real-time weather data for any city worldwide',
-    tags: ['Python', 'OpenWeatherMap API', 'Tkinter'],
-    type: 'Python',
-    codeLink: 'https://github.com/mikeCodeCraft/Python_Mini_Projects/blob/main/api_weather.py',
-    categories: ['python', 'api'],
-  },
-  {
-    id: 'file-organizer',
-    title: 'File Organizer',
-    image: '/file_org.jpg',
-    description: 'A desktop application that automatically organizes files into categorized folders with undo functionality',
-    tags: ['Python', 'Shutil', 'Tkinter'],
-    type: 'Desktop',
-    codeLink: 'https://github.com/mikeCodeCraft/Python_Mini_Projects/tree/main/file-orgs',
-    categories: ['python', 'desktop'],
-  },
-];
+  ...projects1,
+]
 
 const Projects = ({ preview = false }) => {
   const [filter, setFilter] = useState('all');
