@@ -17,7 +17,7 @@ const Projects = ({ preview = false }) => {
   };
 
   const filteredProjects = preview
-    ? projects
+    ? projects.slice(0, 3)
     : projects.filter((project) => filter === 'all' || project.categories.includes(filter));
 
   return (

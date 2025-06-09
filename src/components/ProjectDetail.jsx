@@ -1,4 +1,4 @@
-// @ts-ignore
+
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -14,12 +14,23 @@ import fileOrganizer from './projects/fileOrganizer';
 import weatherChecker from './projects/Weatherchecker';
 import typingGame from './projects/typingGame';
 import currencyConverter from './projects/currency';
+import backgroundRemover from './projects/bgremover';
+
+import Keylogger from './projects/KeyLogger';
+import ClipboardManager from './projects/clipboardManager'; 
+import QRCodeGenerator from './projects/QrCode';
+
+
 
 const projects = [
   fileOrganizer,
   weatherChecker,
   typingGame,
   currencyConverter,
+  backgroundRemover,
+  Keylogger,
+  ClipboardManager, 
+  QRCodeGenerator
 ];
 
 class ErrorBoundary extends React.Component {
@@ -237,77 +248,7 @@ const ProjectDetail = () => {
                 </div>
               )}
 
-              {/* Converter Preview (Currency Converter) */}
-              {/* {project.converterPreview && (
-                <div className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900">Converter Preview</h2>
-                  <div className="converter-preview bg-gradient-to-br from-gray-100 to-blue-100 rounded-lg p-6 shadow-lg">
-                    <div className="text-center mb-8">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">{project.converterPreview.title}</h3>
-                      <p className="text-gray-600">{project.converterPreview.description}</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-6 shadow-inner">
-                      <div className="mb-6">
-                        <label htmlFor="amount" className="block text-gray-800 font-medium mb-2">
-                          Amount:
-                        </label>
-                        <input
-                          type="text"
-                          id="amount"
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          defaultValue={project.converterPreview.mockup.amount}
-                          disabled
-                        />
-                      </div>
-                      <div className="mb-6">
-                        <label htmlFor="from-currency" className="block text-gray-800 font-medium mb-2">
-                          From Currency:
-                        </label>
-                        <select
-                          id="from-currency"
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          defaultValue={project.converterPreview.mockup.fromCurrency}
-                          disabled
-                        >
-                          {project.supportedCurrencies?.map((currency, index) => (
-                            <option key={index} value={currency.code}>
-                              {currency.flag} {currency.code}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="mb-6">
-                        <label htmlFor="to-currency" className="block text-gray-800 font-medium mb-2">
-                          To Currency:
-                        </label>
-                        <select
-                          id="to-currency"
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          defaultValue={project.converterPreview.mockup.toCurrency}
-                          disabled
-                        >
-                          {project.supportedCurrencies?.map((currency, index) => (
-                            <option key={index} value={currency.code}>
-                              {currency.flag} {currency.code}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="text-center mb-4">
-                        <p className="text-green-600 font-medium">{project.converterPreview.mockup.result}</p>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          className="px-6 py-2 bg-blue-500 text-white rounded-lg opacity-50 cursor-not-allowed"
-                          disabled
-                        >
-                          Convert
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )} */}
+
 
               {/* Screenshots */}
               {project.screenshots?.length > 0 && (
