@@ -30,7 +30,7 @@ const projects = [
   backgroundRemover,
   Keylogger,
   ClipboardManager, 
-  QRCodeGenerator
+  QRCodeGenerator,
 ];
 
 class ErrorBoundary extends React.Component {
