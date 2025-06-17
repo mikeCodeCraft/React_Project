@@ -20,8 +20,8 @@ const Login = () => {
       params.append('grant_type', 'password');
       params.append('username', username);
       params.append('password', password);
-      params.append('client_id', import.meta.env.VITE_CLIENT_ID );
-      params.append('client_secret', import.meta.env.VITE_CLIENT_SECRET );
+      params.append('client_id', import.meta.env.CLIENT_ID );
+      params.append('client_secret', import.meta.env.CLIENT_SECRET );
 
       const response = await api.post('/auth/token/', params, {
         headers: {
