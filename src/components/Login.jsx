@@ -20,8 +20,8 @@ const Login = () => {
       params.append('grant_type', 'password');
       params.append('username', username);
       params.append('password', password);
-      params.append('client_id', import.meta.env.VITE_CLIENT_ID || 'M4KPVSbc7K6DH2Kl7V29Y2heIF0tzZuGutGq0kML');
-      params.append('client_secret', import.meta.env.VITE_CLIENT_SECRET || 'zzBIxrpxVVAD7cfpO3x2XAyGeFi9tUJaqgMPd5wEnOXIwX50FsVdIJDAeRfjcXfn23NATEkoBxOYyzpZouLzOeTMonxm7r570TtABVcRf0I0rnXqHVwceGwW6gA3gUVA');
+      params.append('client_id', import.meta.env.VITE_CLIENT_ID );
+      params.append('client_secret', import.meta.env.VITE_CLIENT_SECRET );
 
       const response = await api.post('/auth/token/', params, {
         headers: {
