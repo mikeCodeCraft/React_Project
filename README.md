@@ -28,7 +28,7 @@ This is a modern React-based portfolio application built with Vite and Tailwind 
 
 1. **Clone the repository**
    ```sh
-   git clone <repo-url>
+   git clone https://github.com/mikeCodeCraft/mikeCodeCraft.git
    cd react-app
    ```
 2. **Install dependencies**
