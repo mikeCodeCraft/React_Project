@@ -16,7 +16,7 @@ const Skills = () => {
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between mb-1">
-                  <span>HTML/CSS</span>
+                  <span>HTML</span>
                   <span>95%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
@@ -25,11 +25,37 @@ const Skills = () => {
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span>JavaScript</span>
+                  <span>CSS</span>
                   <span>90%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div className="skill-bar rounded-full h-2" style={{ width: '90%' }}></div>
+                </div>
+              </div><div>
+                <div className="flex justify-between mb-1">
+                  <span>Tailwindcss</span>
+                  <span>70%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="skill-bar rounded-full h-2" style={{ width: '70%' }}></div>
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Javascript</span>
+                  <span>80%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="skill-bar rounded-full h-2" style={{ width: '80%' }}></div>
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Reactjs</span>
+                  <span>70%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="skill-bar rounded-full h-2" style={{ width: '70%' }}></div>
                 </div>
               </div>
             </div>

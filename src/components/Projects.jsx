@@ -39,8 +39,9 @@ const Projects = ({ preview = false }) => {
                 { label: 'Web Development', value: 'web' },
                 { label: 'Games', value: 'game' },
                 { label: 'Python', value: 'python' },
+                { label: 'php', value: 'php' },
                 { label: 'AI/ML', value: 'ai' },
-                { label: 'API', value: 'api' },
+                { label: 'Backend API', value: 'api' },
                 { label: 'Desktop App', value: 'desktop' },
                 { label: 'Full Stack', value: 'fullstack' },
               ].map(({ label, value }) => (
@@ -89,9 +90,20 @@ const Projects = ({ preview = false }) => {
                   ))}
                 </div>
                 <div className="flex space-x-3">
-                  <Link to={`/projects/${project.id}`} className="text-indigo-600 hover:text-indigo-800">
-                    <i className="fas fa-external-link-alt"></i> Details
-                  </Link>
+                  {project.liveLink ? (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-green-600 hover:text-green-800"
+                    >
+                      <i className="fas fa-external-link-alt"></i> Live
+                    </a>
+                  ) : (
+                    <Link to={`/projects/${project.id}`} className="text-indigo-600 hover:text-indigo-800">
+                      <i className="fas fa-external-link-alt"></i> Details
+                    </Link>
+                  )}
                   <a
                     href={project.codeLink}
                     target="_blank"

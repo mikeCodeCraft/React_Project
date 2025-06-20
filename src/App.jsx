@@ -14,6 +14,7 @@ import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import './styles/index.css';
 import ProjectDetail from './components/ProjectDetail';
+import Contact from './components/contact';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
               <About />
               <Skills />
               <Projects preview={true}/>
+              <Contact />
             </>
           }
         />
