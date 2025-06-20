@@ -15,8 +15,8 @@ const Footer = () => {
             <a href="https://github.com/mikeCodeCraft/" className="text-gray-400 hover:text-white transition">
               <i className="fab fa-github"></i>
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition">
-              <i className="fab fa-linkedin-in"></i>
+            <a href="https://discord.gg/EfD6fbVD" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
+              <i className="fab fa-discord"></i>
             </a>
             <a href="https://x.com/mikeCodeCraft" className="text-gray-400 hover:text-white transition">
               <i className="fab fa-twitter"></i>

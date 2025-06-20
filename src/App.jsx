@@ -15,6 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import './styles/index.css';
 import ProjectDetail from './components/ProjectDetail';
 import Contact from './components/contact';
+import Services from './components/Services';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
               <Hero />
               <About />
               <Skills />
+              <Services />
               <Projects preview={true}/>
               <Contact />
             </>

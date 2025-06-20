@@ -22,7 +22,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-gray-50">
+    <section id="contact" className="py-16 bg-gradient-to-br from-indigo-50 to-purple-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Get In Touch</h2>
         <div className="md:flex">
@@ -63,17 +63,14 @@ const Contact = () => {
             <div className="mt-8">
               <h4 className="text-lg font-medium mb-4 text-gray-800">Follow Me</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition duration-300">
+                <a href="https://github.com/mikecodecraft" className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition duration-300">
                   <i className="fab fa-github"></i>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition duration-300">
-                  <i className="fab fa-linkedin-in"></i>
+                <a href="https://discord.gg/EfD6fbVD" className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition duration-300" target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-discord"></i>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition duration-300">
+                <a href="https://x.com/mikecodecraft" className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition duration-300">
                   <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition duration-300">
-                  <i className="fab fa-medium"></i>
                 </a>
               </div>
             </div>

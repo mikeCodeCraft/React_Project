@@ -4,14 +4,14 @@ import '../styles/Skills.css';
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-50">
+    <section id="skills" className="py-20 bg-gray-50 animate-fade-in-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in-down">
           <h2 className="text-3xl font-bold mb-4">My Skills</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
+          <div className="animate-fade-in-up delay-100">
             <h3 className="text-xl font-semibold mb-6">Frontend</h3>
             <div className="space-y-6">
               <div>
@@ -60,7 +60,7 @@ const Skills = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="animate-fade-in-up delay-200">
             <h3 className="text-xl font-semibold mb-6">Backend & Others</h3>
             <div className="space-y-6">
               <div>
@@ -112,28 +112,28 @@ const Skills = () => {
           </div>
         </div>
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition animate-fade-in-up delay-300">
             <div className="text-4xl text-indigo-500 mb-4">
               <i className="fas fa-code"></i>
             </div>
             <h4 className="font-semibold mb-2">Clean Code</h4>
             <p className="text-gray-600 text-sm">Writing maintainable and efficient code</p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition animate-fade-in-up delay-400">
             <div className="text-4xl text-purple-500 mb-4">
               <i className="fas fa-mobile-alt"></i>
             </div>
             <h4 className="font-semibold mb-2">Responsive Design</h4>
             <p className="text-gray-600 text-sm">Perfect on all devices</p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition animate-fade-in-up delay-500">
             <div className="text-4xl text-pink-500 mb-4">
               <i className="fas fa-rocket"></i>
             </div>
             <h4 className="font-semibold mb-2">Fast Performance</h4>
             <p className="text-gray-600 text-sm">Optimized for speed</p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+          <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition animate-fade-in-up delay-600">
             <div className="text-4xl text-blue-500 mb-4">
               <i className="fas fa-shield-alt"></i>
             </div>
@@ -147,3 +147,5 @@ const Skills = () => {
 };
 
 export default Skills;
+
+

@@ -15,10 +15,10 @@ const typingGame = {
     title: 'Python Mini Projects',
     image: '/projects.png',
     description: 'A collection of Python mini projects, each designed to demonstrate and practice different programming concepts, libraries, and APIs. The projects include GUI applications, automation scripts, web scraping, QR code generation, and more.',
-    tags: ['PHP', 'Laravel', 'Tkinter'],
-    type: 'PHP Web Application',
+    tags: ['Python', 'Tkinter'],
+    type: 'Python Application',
     codeLink: 'https://github.com/mikeCodeCraft/Python_Mini_Projects',
-    categories: ['fullstack', 'web', 'php', "game"],
+    categories: ['python'],
   };
 const weather  = {
     id: 'weather-checker',

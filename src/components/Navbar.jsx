@@ -105,6 +105,9 @@ const Navbar = () => {
               <Link to="/projects" className="nav-link px-3 py-2 text-sm font-medium text-indigo-600">
                 Projects
               </Link>
+              <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
+                Contact
+              </a>
               {isAuthenticated ? (
                 <>
                   <Link to="/profile" className="nav-link px-3 py-2 text-sm font-medium text-gray-700">
@@ -168,6 +171,13 @@ const Navbar = () => {
           <Link to="/projects" onClick={closeMobileMenu} className="block nav-link px-3 py-2 text-sm font-medium text-indigo-600">
             Projects
           </Link>
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, 'contact')}
+            className="block nav-link px-3 py-2 text-sm font-medium text-gray-700"
+          >
+            Contact
+          </a>
           {isAuthenticated ? (
             <>
               <Link to="/profile" onClick={closeMobileMenu} className="block nav-link px-3 py-2 text-sm font-medium text-gray-700">
